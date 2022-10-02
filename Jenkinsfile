@@ -18,8 +18,8 @@ pipeline {
       stage('Docker Push') {
     	agent any
       steps {
-      	withCredentials([usernamePassword(credentialsId: 'DockerHub', passwordVariable: 'DockerHubPassword', usernameVariable: 'DockerHubUser')]) {
-        	sh "docker login -u ${env.DockerHubUser} -p ${env.DockerHubPassword}"
+      	withCredentials([usernamePassword(credentialsId: 'DockerHub', passwordVariable: 'pass', usernameVariable: 'user')]) {
+        	sh "docker login -u ${pass} -p ${user}"
           sh 'docker push yasser/jenkinsapp:latest'
         }
       }
